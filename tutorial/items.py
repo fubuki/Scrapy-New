@@ -14,3 +14,6 @@ class NewsItem(Item):
     body = Field()
     time = Field()
     
+class YahooItem(Item):
+    title = Field()
+    body = Field()

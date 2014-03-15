@@ -13,3 +13,13 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
+
+
+ITEM_PIPELINES = [
+  'scrapy_mongodb.MongoDBPipeline',
+]
+
+MONGODB_URI = 'mongodb://192.168.65.141:27017'
+MONGODB_DATABASE = 'scrapy'
+MONGODB_COLLECTION = 'my_items'
+MONGODB_UNIQUE_KEY = ''

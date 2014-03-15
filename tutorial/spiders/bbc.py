@@ -25,7 +25,13 @@ class BBCSpider(SitemapSpider):
         item = NewsItem()
 
         sel = Selector(response)
-        item['title'] = sel.xpath('//h1[@class="story-header"]/text()').extract()[0]
+
+        if 0 < len(sel.xpath('//h1[@class="story-header"]/text()').extract()):
+            item['title'] = sel.xpath('//h1[@class="story-header"]/text()').extract()[0]
+        else:
+            item['title'] = ''
+
+
         item['body'] = u'\n'.join(
             u''.join(p.xpath('.//text()').extract()) for p in sel.css('.story-body > p'))
         item['time'] = datetime.strptime(
