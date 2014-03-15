@@ -5,7 +5,7 @@ from datetime import datetime
 from scrapy.contrib.spiders import SitemapSpider
 from scrapy.selector import Selector
 
-from helloscrapy.items import NewsItem
+from tutorial.items import NewsItem
 
 
 class BBCSpider(SitemapSpider):
@@ -30,6 +30,6 @@ class BBCSpider(SitemapSpider):
             u''.join(p.xpath('.//text()').extract()) for p in sel.css('.story-body > p'))
         item['time'] = datetime.strptime(
             u''.join(sel.xpath('//span[@class="story-date"]/span/text()').extract()),
-            u'%d %B %YLast updated at %H:%M GMT')
+            u'%d %B %YLast updated at %H:%M')
 
         yield item

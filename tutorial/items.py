@@ -13,3 +13,4 @@ class NewsItem(Item):
     title = Field()
     body = Field()
     time = Field()
+    
