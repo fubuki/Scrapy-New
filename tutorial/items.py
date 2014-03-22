@@ -17,3 +17,4 @@ class NewsItem(Item):
 class YahooItem(Item):
     title = Field()
     body = Field()
+    url = Field()

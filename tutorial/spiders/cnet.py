@@ -28,6 +28,7 @@ class CNetSpider(CrawlSpider):
 
         sel = Selector(response)
         item['title'] = sel.xpath('//h1/text()').extract()[0]
+        
         item['body'] = u'\n'.join(
             u''.join(p.xpath('.//text()').extract()) for p in sel.css('#contentBody .postBody p'))
         item['time'] = datetime.strptime(

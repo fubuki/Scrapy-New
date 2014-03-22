@@ -24,7 +24,10 @@ class YahooSpider(CrawlSpider):
         sel = Selector(response)
                 
         title = sel.xpath('//h1[@class="headline"]/text()').extract()
-        body = sel.xpath('//div[@class="bd"]/text()').extract()
+        body = u'\n'.join(
+            u''.join(p.xpath('.//text()').extract()) for p in sel.xpath('//div[@id="mediaarticlebody"]/div[@class="bd"]'))
+
+        item['url'] = response.url
         if 0 < len(title):
             item['title'] = title[0]
             item['body'] = body[0]
