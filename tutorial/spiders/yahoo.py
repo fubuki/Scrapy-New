@@ -30,7 +30,7 @@ class YahooSpider(CrawlSpider):
         item['url'] = response.url
         if 0 < len(title):
             item['title'] = title[0]
-            item['body'] = body[0]
+            item['body'] = ' '.join(body.split())
         else:
             item['title'] = ''
             item['body'] = ''

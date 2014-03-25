@@ -23,6 +23,6 @@ class TestSpider(Spider):
         item['url'] = response.url
 
         item['title'] = title[0]
-        item['body'] = body
+        item['body'] = ' '.join(body.split())
         
         yield item
