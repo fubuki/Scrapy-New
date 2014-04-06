@@ -34,8 +34,6 @@ class BBCSpider(SitemapSpider):
 
         item['body'] = u'\n'.join(
             u''.join(p.xpath('.//text()').extract()) for p in sel.css('.story-body > p'))
-        item['time'] = datetime.strptime(
-            u''.join(sel.xpath('//span[@class="story-date"]/span/text()').extract()),
-            u'%d %B %YLast updated at %H:%M')
+
 
         yield item

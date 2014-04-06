@@ -1,3 +1,4 @@
+import os
 # Scrapy settings for tutorial project
 #
 # For simplicity, this file contains only the most important settings by
@@ -16,12 +17,16 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 
 
 ITEM_PIPELINES = [
-  'scrapy_mongodb.MongoDBPipeline',
+  #'scrapy_mongodb.MongoDBPipeline',
+  'scrapy.contrib.pipeline.images.ImagesPipeline'
 ]
 
-MONGODB_URI = 'mongodb://192.168.65.141:27017'
-MONGODB_DATABASE = 'scrapy'
-MONGODB_COLLECTION = 'test'
-MONGODB_UNIQUE_KEY = 'title'
+#MONGODB_URI = 'mongodb://192.168.65.141:27017'
+#MONGODB_DATABASE = 'scrapy'
+#MONGODB_COLLECTION = 'bbc'
+#MONGODB_UNIQUE_KEY = 'title'
 
 DEPTH_LIMIT = 3
+
+DIR = os.path.dirname(os.path.realpath(__file__))
+IMAGES_STORE = os.path.join(DIR, '..', 'images')

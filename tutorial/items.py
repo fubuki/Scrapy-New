@@ -18,3 +18,6 @@ class YahooItem(Item):
     title = Field()
     body = Field()
     url = Field()
+
+class ImageItem(Item):
+    image_urls = Field()
