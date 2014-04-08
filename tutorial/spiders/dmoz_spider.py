@@ -1,5 +1,7 @@
 from scrapy.spider import Spider
 from scrapy.selector import Selector
+from scrapy.contrib.loader import ItemLoader 
+
 
 from tutorial.items import DmozItem
 
@@ -11,14 +13,18 @@ class DmozSpider(Spider):
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
     ]
 
-    def parse(self, response):
+    def parse(self, response):  
         sel = Selector(response)
         sites = sel.xpath('//ul/li')
         items = []
         for site in sites:
-            item = DmozItem()
-            item['title'] = site.xpath('a/text()').extract()
-            item['link'] = site.xpath('a/@href').extract()
-            item['desc'] = site.xpath('text()').extract()
-            items.append(item)
+            l = ItemLoader(item=DmozItem(), response=response)  
+            l.add_xpath('title', 'a/text()')  
+            l.add_xpath('link', 'a/@href')  
+            l.add_xpath('desc', 'text()')  
+            items.append(l.load_item())
+
+
         return items
+
+ 
